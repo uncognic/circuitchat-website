@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>circuitchat</title>
+    <meta property="og:title" content="circuitchat" />
+    <meta property="og:description" content="anonymous p2p messaging over tor" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="site-header">
+            <div class="header-left">
+                <strong>circuitchat</strong>
+            </div>
+            <div class="header-right">
+                <a href="https://github.com/uncognic/circuitchat" target="_blank" rel="noopener">github</a>
+                <a href="#download">download</a>
+                <a href="#docs">docs</a>
+            </div>
+        </div>
+
+        <div class="grid">
+            <aside class="panel">
+                <div class="sidebar-section">
+                    <h2>info</h2>
+                    <div class="stat-row"><span class="stat-label">latest version</span><span class="stat-val" id="version-display"></span></div>
+                    <div class="stat-row"><span class="stat-label">language</span><span class="stat-val">rust</span></div>
+                    <div class="stat-row"><span class="stat-label">license</span><span class="stat-val">gplv3</span></div>
+                </div>
+
+            </aside>
+
+            <main class="panel" id="docs">
+                <h1>circuitchat</h1>
+                <p class="tagline">serverless, anonymous, end-to-end encrypted messaging over Tor.</p>
+
+                <p>terminal-based p2p messenger with no accounts or servers. share an onion address to connect directly. all traffic is end-to-end encrypted.</p>
+
+                <h2 id="download">download</h2>
+                <a class="dl-btn" href="https://github.com/uncognic/circuitchat/releases/latest/download/circuitchat-vVERSION-windows.exe">windows (.exe)</a>
+                <a class="dl-btn" href="https://github.com/uncognic/circuitchat/releases/latest/download/circuitchat-vVERSION-Linux">linux</a>
+                <a class="dl-btn" href="https://github.com/uncognic/circuitchat/releases/latest/download/circuitchat-vVERSION-macOS">mac</a>
+                <a class="dl-btn" href="https://github.com/uncognic/circuitchat/releases/latest">all releases</a>
+                <h2>quickstart</h2>
+                <p>one peer listens, the other connects:</p>
+                <pre>circuitchat listen
+circuitchat initiate &lt;onion-address&gt;</pre>
+
+                <h2>build from source</h2>
+                <pre>git clone https://github.com/uncognic/circuitchat
+cd circuitchat
+cargo build --release</pre>
+            </main>
+        </div>
+
+        <footer>
+            MMXXVI - <a href="https://github.com/uncognic/circuitchat" target="_blank" rel="noopener">circuitchat</a> - <a href="https://1707070.xyz" target="_blank" rel="noopener">uncognic</a>
+        </footer>
+    </div>
+    <script>
+        const VERSION = "1.4.0";
+        document.getElementById("version-display").textContent = VERSION;
+        document.querySelectorAll(".dl-btn").forEach(a => {
+            a.href = a.href.replace("VERSION", VERSION);
+        });
+    </script>
+</body>
+
+</html>
