@@ -27,9 +27,12 @@
             <aside class="panel">
                 <div class="sidebar-section">
                     <h2>info</h2>
-                    <div class="stat-row"><span class="stat-label">latest version</span><span class="stat-val" id="version-display"></span></div>
-                    <div class="stat-row"><span class="stat-label">language</span><span class="stat-val">rust</span></div>
-                    <div class="stat-row"><span class="stat-label">license</span><span class="stat-val">gplv3</span></div>
+                    <div class="stat-row"><span class="stat-label">latest version</span><span class="stat-val"
+                            id="version-display"></span></div>
+                    <div class="stat-row"><span class="stat-label">language</span><span class="stat-val">rust</span>
+                    </div>
+                    <div class="stat-row"><span class="stat-label">license</span><span class="stat-val">gplv3</span>
+                    </div>
                 </div>
 
             </aside>
@@ -38,35 +41,48 @@
                 <h1>circuitchat</h1>
                 <p class="tagline">serverless, anonymous, end-to-end encrypted messaging over Tor.</p>
 
-                <p>terminal-based p2p messenger with no accounts or servers. share an onion address to connect directly. all traffic is end-to-end encrypted.</p>
+                <p>terminal-based p2p messenger with no accounts or servers. share an onion address to connect directly.
+                    all traffic is end-to-end encrypted.</p>
 
                 <h2 id="download">download</h2>
-                <a class="dl-btn" href="https://github.com/uncognic/circuitchat/releases/latest/download/circuitchat-vVERSION-windows.exe">windows (.exe)</a>
-                <a class="dl-btn" href="https://github.com/uncognic/circuitchat/releases/latest/download/circuitchat-vVERSION-Linux">linux</a>
-                <a class="dl-btn" href="https://github.com/uncognic/circuitchat/releases/latest/download/circuitchat-vVERSION-macOS">mac</a>
+                <a class="dl-btn"
+                    href="https://github.com/uncognic/circuitchat/releases/latest/download/circuitchat-vVERSION-windows.exe">windows
+                    (.exe)</a>
+                <a class="dl-btn"
+                    href="https://github.com/uncognic/circuitchat/releases/latest/download/circuitchat-vVERSION-Linux">linux</a>
+                <a class="dl-btn"
+                    href="https://github.com/uncognic/circuitchat/releases/latest/download/circuitchat-vVERSION-macOS">mac</a>
                 <a class="dl-btn" href="https://github.com/uncognic/circuitchat/releases/latest">all releases</a>
                 <h2>quickstart</h2>
                 <p>one peer listens, the other connects:</p>
                 <pre>circuitchat listen
-circuitchat initiate &lt;onion-address&gt;</pre>
+    circuitchat initiate &lt;onion-address&gt;</pre>
 
                 <h2>build from source</h2>
                 <pre>git clone https://github.com/uncognic/circuitchat
-cd circuitchat
-cargo build --release</pre>
+    cd circuitchat
+    cargo build --release</pre>
             </main>
         </div>
 
         <footer>
-            MMXXVI - <a href="https://github.com/uncognic/circuitchat" target="_blank" rel="noopener">circuitchat</a> - <a href="https://1707070.xyz" target="_blank" rel="noopener">uncognic</a>
+            MMXXVI - <a href="https://github.com/uncognic/circuitchat" target="_blank" rel="noopener">circuitchat</a> -
+            <a href="https://1707070.xyz" target="_blank" rel="noopener">uncognic</a>
         </footer>
     </div>
     <script>
-        const VERSION = "1.4.0";
-        document.getElementById("version-display").textContent = VERSION;
-        document.querySelectorAll(".dl-btn").forEach(a => {
-            a.href = a.href.replace("VERSION", VERSION);
-        });
+        fetch("https://api.github.com/repos/uncognic/circuitchat/releases/latest")
+            .then(r => r.json())
+            .then(data => {
+                const version = data.tag_name.replace(/^v/, "");
+                document.getElementById("version-display").textContent = version;
+                document.querySelectorAll(".dl-btn").forEach(a => {
+                    a.href = a.href.replace("VERSION", version);
+                });
+            })
+            .catch(() => {
+                console.log("failed to fetch latest version");
+            });
     </script>
 </body>
 
